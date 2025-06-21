@@ -38,57 +38,57 @@ void	sort_four_to_five_elements(t_list *s)
 	pa(s);
 }
 
-int	is_array_sorted(t_list *s)
+void	radix_sort_for_b(t_list *s, int b_size, int limiter, int j)
 {
-	int	i;
 
-	i = 0;
-	while (i < s->a_size - 1)
+	while (b_size-- && j <= limiter && !is_a_sorted(s))
 	{
-		if (s->a[i] > s->a[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	radix_sort_stack_b(t_list *s, int b_size, int bit_size, int j)
-{
-	while (b_size-- && j <= bit_size && !is_array_sorted(s))
-	{
-		if (((s->b[0] >> j) & 1) == 0)
+		if (!((s->b[0] >> j) & 1))
 			rb(s->b, s->b_size);
 		else
 			pa(s);
 	}
-	if (is_array_sorted(s))
+	if (is_a_sorted(s))
 		while (s->b_size != 0)
 			pa(s);
 }
 
-void	radix_sort(t_list *s)
+void	radix_sort(t_list *s, int limiter)
 {
 	int	j;
+	int size;
+
+	j = 0;
+	while (j <= limiter)
+	{
+		size = s->a_size;
+		while (size-- && !is_a_sorted(s))
+		{
+			if (!((s->a[0] >> j) & 1))
+				pb(s);
+			else
+				ra(s->a, s->a_size);
+		}
+		radix_sort_for_b(s, s->b_size, limiter, j + 1);
+		j++;
+	}
+}
+
+void	over_six_sort(t_list *s)
+{
 	int	bit_size;
 	int	size;
 
 	bit_size = 0;
 	size = s->a_size;
-	while (size > 1 && ++bit_size)
-		size /= 2;
-	j = -1;
-	while (++j <= bit_size)
+	while (size > 1)
 	{
-		size = s->a_size;
-		while (size-- && !is_array_sorted(s))
-		{
-			if (((s->a[0] >> j) & 1) == 0)
-				pb(s);
-			else
-				ra(s->a, s->a_size);
-		}
-		radix_sort_stack_b(s, s->b_size, bit_size, j + 1);
+		bit_size++;
+		size /= 2;
 	}
+	radix_sort(s, bit_size);
 	while (s->b_size != 0)
+	{
 		pa(s);
+	}
 }
