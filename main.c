@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 {
 	t_list	*s;
 
-	validate_arguments(argc, argv);
+	arg_check(argc, argv);
 	s = malloc(sizeof * s);
 	if (s == NULL)
 		exit(1);
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	else if (s->a_size >= 4 && s->a_size <= 5)
 		sort_four_to_five_elements(s);
 	else
-		radix_sort(s);
+		over_six_sort(s);
 	exit_if_sorted_or_has_duplicate(s, 1);
 	free_and_exit_with_message(s, "Error\n");
 	return (0);
