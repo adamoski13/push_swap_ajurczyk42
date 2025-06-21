@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+int	is_a_sorted(t_list *s)
+{
+	int	i;
+
+	i = 0;
+	while (i < s->a_size - 1)
+	{
+		if (s->a[i] > s->a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	exit_if_sorted_or_has_duplicate(t_list *s, int i)
 {
 	int	j;
@@ -19,11 +33,11 @@ void	exit_if_sorted_or_has_duplicate(t_list *s, int i)
 			i++;
 		}
 	}
-	if (is_array_sorted(s))
+	if (is_a_sorted(s))
 		free_and_exit_with_message(s, NULL);
 }
 
-void	validate_arguments(int argc, char **argv)
+void	arg_check(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -53,7 +67,7 @@ void	validate_arguments(int argc, char **argv)
 void	free_and_exit_with_message(t_list *s, char *msg)
 {
 	if (msg)
-		write(2, msg, ft_strlen(msg));
+		ft_putstr_fd(msg, STDERR_FILENO);
 	if (s != NULL)
 	{
 		if (s->a != NULL)
