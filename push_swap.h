@@ -19,13 +19,14 @@ typedef struct s_list
 void	parse_numbers(t_list *s);
 void	initialize_list(int argc, char **argv, t_list *s);
 void	create_index(t_list *s);
-int		ft_atol(const char *n, t_list *s);
+int		ft_atoi_long(const char *n, t_list *s);
 int		ft_count_words(const char *src, char c);
 
 // check functions
 void	exit_if_sorted_or_has_duplicate(t_list *s, int i);
 void	free_and_exit_with_message(t_list *s, char *msg);
-void	validate_arguments(int argc, char **argv);
+void	arg_check(int argc, char **argv);
+int		is_a_sorted(t_list *s);
 
 // move functions
 void    pa(t_list *s);
@@ -42,7 +43,7 @@ void    rrb(int *arr, int size);
 // sort functions
 void	sort_three_elements(t_list *s);
 void	sort_four_to_five_elements(t_list *s);
-void	radix_sort(t_list *s);
-int		is_array_sorted(t_list *s);
+void	over_six_sort(t_list *s);
+void	radix_sort(t_list *s, int limiter);
 
 #endif
