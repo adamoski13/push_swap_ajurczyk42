@@ -35,7 +35,7 @@ void	parse_numbers(t_list *s)
 	i = 0;
 	while (tmp[i] != NULL && tmp[i][0] != '\0')
 	{
-		s->a[z++] = ft_atol(tmp[i++], s);
+		s->a[z++] = ft_atoi_long(tmp[i++], s);
 		free(tmp[i - 1]);
 	}
 	free(tmp);
@@ -90,7 +90,7 @@ void	create_index(t_list *s)
 	free(new_a);
 }
 
-int	ft_atol(const char *n, t_list *s)
+int	ft_atoi_long(const char *n, t_list *s)
 {
 	int			i;
 	long		sign;
