@@ -24,7 +24,7 @@ int		ft_count_words(const char *src, char c);
 
 // check functions
 void	exit_if_sorted_or_has_duplicate(t_list *s, int i);
-void	free_and_exit_with_message(t_list *s, char *msg);
+void	free_stacks(t_list *s, char *msg);
 void	arg_check(int argc, char **argv);
 int		is_a_sorted(t_list *s);
 
