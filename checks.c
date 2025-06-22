@@ -27,14 +27,14 @@ void	exit_if_sorted_or_has_duplicate(t_list *s, int i)
 			while (j < s->a_size)
 			{
 				if (s->a[i] == s->a[j])
-					free_and_exit_with_message(s, "Error\n");
+					free_stacks(s, "Error\n");
 				j++;
 			}
 			i++;
 		}
 	}
-	if (is_a_sorted(s))
-		free_and_exit_with_message(s, NULL);
+	else if (is_a_sorted(s))
+		free_stacks(s, NULL);
 }
 
 void	arg_check(int argc, char **argv)
@@ -44,12 +44,12 @@ void	arg_check(int argc, char **argv)
 
 	i = 0;
 	if (argc < 2)
-		free_and_exit_with_message(NULL, "");
+		free_stacks(NULL, "");
 	while (++i < argc)
 	{
 		j = 0;
 		if (!argv[i][0] || (argv[i][0] && argv[i][0] == ' '))
-			free_and_exit_with_message(NULL, "Error\n");
+			free_stacks(NULL, "Error\n");
 		while (argv[i][j] != '\0')
 		{
 			if ((!(ft_isdigit(argv[i][j])) && (argv[i][j] != ' ') 
@@ -58,13 +58,13 @@ void	arg_check(int argc, char **argv)
 			|| (argv[i][j] == '+' && argv[i][j + 1] == '\0') 
 			|| (argv[i][j] == '-' && argv[i][j + 1] == ' ') 
 			|| (argv[i][j] == '+' && argv[i][j + 1] == ' ')) 
-				free_and_exit_with_message(NULL, "Error\n");
+				free_stacks(NULL, "Error\n");
 			j++;
 		}
 	}
 }
 
-void	free_and_exit_with_message(t_list *s, char *msg)
+void	free_stacks(t_list *s, char *msg)
 {
 	if (msg)
 		ft_putstr_fd(msg, STDERR_FILENO);
