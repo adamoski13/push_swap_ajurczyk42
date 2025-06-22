@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/14 20:07:18 by ajurczyk          #+#    #+#             */
+/*   Updated: 2025/06/22 19:30:14 by ajurczyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -5,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -29,16 +42,16 @@ void	arg_check(int argc, char **argv);
 int		is_a_sorted(t_list *s);
 
 // move functions
-void    pa(t_list *s);
-void    pb(t_list *s);
-void    sa(int *arr);
-void    sb(int *arr);
-void    ss(int *arr1, int *arr2);
-void    ra(int *arr, int size);
-void    rb(int *arr, int size);
-void    rr(int *arr1, int *arr2, int size);
-void    rra(int *arr, int size);
-void    rrb(int *arr, int size);
+void	pa(t_list *s);
+void	pb(t_list *s);
+void	sa(int *arr);
+void	sb(int *arr);
+void	ss(int *arr1, int *arr2);
+void	ra(int *arr, int size);
+void	rb(int *arr, int size);
+void	rr(int *arr1, int *arr2, int size);
+void	rra(int *arr, int size);
+void	rrb(int *arr, int size);
 
 // sort functions
 void	sort_three_elements(t_list *s);
