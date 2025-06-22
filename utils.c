@@ -58,10 +58,10 @@ void	initialize_list(int argc, char **argv, t_list *s)
 	}
 	s->a = malloc(s->a_size * sizeof * s->a);
 	if (s->a == NULL)				
-		free_and_exit_with_message(s, "Error\n");
+		free_stacks(s, "Error\n");
 	s->b = malloc(s->a_size * sizeof * s->b);
 	if (s->b == NULL)
-		free_and_exit_with_message(s, "Error\n");
+		free_stacks(s, "Error\n");
 }
 
 void	create_index(t_list *s)
@@ -73,7 +73,7 @@ void	create_index(t_list *s)
 
 	new_a = malloc(s->a_size * sizeof * new_a);
 	if (new_a == NULL)
-		free_and_exit_with_message(s, "Error\n");
+		free_stacks(s, "Error\n");
 	i = -1;
 	while (++i < s->a_size)
 	{
@@ -109,11 +109,11 @@ int	ft_atoi_long(const char *n, t_list *s)
 	}
 	while (n[i])
 	{
-		if (res > 2147483647 || (res * sign) < -2147483648 || ft_strlen(n) > 11)
-			free_and_exit_with_message(s, "Error\n");
 		if (!(n[i] >= '0' && n[i] <= '9'))
-			free_and_exit_with_message(s, "Error\n");
+			free_stacks(s, "Error\n");
 		res = res * 10 + (n[i++] - '0');
+		if (res > 2147483647 || (res * sign) < -2147483648 || ft_strlen(n) > 11)
+			free_stacks(s, "Error\n");
 	}
 	return ((int)(res * sign));
 }
