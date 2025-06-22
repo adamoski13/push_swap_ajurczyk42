@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/14 20:06:37 by ajurczyk          #+#    #+#             */
+/*   Updated: 2025/06/22 18:08:25 by ajurczyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	is_a_sorted(t_list *s)
@@ -52,12 +64,12 @@ void	arg_check(int argc, char **argv)
 			free_stacks(NULL, "Error\n");
 		while (argv[i][j] != '\0')
 		{
-			if ((!(ft_isdigit(argv[i][j])) && (argv[i][j] != ' ') 
-			&& (argv[i][j] != '-' && argv[i][j] != '+' && argv[i][j] != ' ')) 
-			|| (argv[i][j] == '-' && argv[i][j + 1] == '\0') 
-			|| (argv[i][j] == '+' && argv[i][j + 1] == '\0') 
-			|| (argv[i][j] == '-' && argv[i][j + 1] == ' ') 
-			|| (argv[i][j] == '+' && argv[i][j + 1] == ' ')) 
+			if ((!(ft_isdigit(argv[i][j])) && (argv[i][j] != ' ')
+			&& (argv[i][j] != '-' && argv[i][j] != '+' && argv[i][j] != ' '))
+			|| (argv[i][j] == '-' && argv[i][j + 1] == '\0')
+			|| (argv[i][j] == '+' && argv[i][j + 1] == '\0')
+			|| (argv[i][j] == '-' && argv[i][j + 1] == ' ')
+			|| (argv[i][j] == '+' && argv[i][j + 1] == ' '))
 				free_stacks(NULL, "Error\n");
 			j++;
 		}
