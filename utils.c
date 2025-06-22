@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/14 20:06:56 by ajurczyk          #+#    #+#             */
+/*   Updated: 2025/06/22 19:41:35 by ajurczyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -41,29 +52,6 @@ void	parse_numbers(t_list *s)
 	free(tmp);
 }
 
-void	initialize_list(int argc, char **argv, t_list *s)
-{
-	int	i;
-
-	i = 0;
-	s->a_size = 0;
-	s->b_size = 0;
-	while (--argc)
-	{
-		if (ft_count_words(argv[i + 1], ' '))
-			s->a_size += ft_count_words(argv[i + 1], ' ');
-		else
-			s->a_size++;
-		i++;
-	}
-	s->a = malloc(s->a_size * sizeof * s->a);
-	if (s->a == NULL)				
-		free_stacks(s, "Error\n");
-	s->b = malloc(s->a_size * sizeof * s->b);
-	if (s->b == NULL)
-		free_stacks(s, "Error\n");
-}
-
 void	create_index(t_list *s)
 {
 	int		i;
@@ -90,6 +78,21 @@ void	create_index(t_list *s)
 	free(new_a);
 }
 
+int	sign_ft_atoi_long(const char *n)
+{
+	int	i;
+
+	i = 0;
+	while (n[i] == ' ' || (n[i] >= '\t' && n[i] <= '\r'))
+		i++;
+	if ((n[i] == '+' || n[i] == '-'))
+	{
+		if (n[i] == '-')
+			return (-1);
+	}
+	return (1);
+}
+
 int	ft_atoi_long(const char *n, t_list *s)
 {
 	int			i;
@@ -97,22 +100,18 @@ int	ft_atoi_long(const char *n, t_list *s)
 	long long	res;
 
 	res = 0;
-	sign = 1;
 	i = 0;
 	while (n[i] == ' ' || (n[i] >= '\t' && n[i] <= '\r'))
 		i++;
 	if ((n[i] == '+' || n[i] == '-'))
-	{
-		if (n[i] == '-')
-			sign = -1;
 		i++;
-	}
+	sign = sign_ft_atoi_long(n);
 	while (n[i])
 	{
 		if (!(n[i] >= '0' && n[i] <= '9'))
 			free_stacks(s, "Error\n");
 		res = res * 10 + (n[i++] - '0');
-		if (res > 2147483647 || (res * sign) < -2147483648 || ft_strlen(n) > 11)
+		if ((sign == 1 && res > 2147483647) || (sign == -1 && res > 2147483648))
 			free_stacks(s, "Error\n");
 	}
 	return ((int)(res * sign));
