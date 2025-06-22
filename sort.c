@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/14 20:06:51 by ajurczyk          #+#    #+#             */
+/*   Updated: 2025/06/22 18:46:56 by ajurczyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -40,7 +51,6 @@ void	sort_four_to_five_elements(t_list *s)
 
 void	radix_sort_for_b(t_list *s, int b_size, int limiter, int j)
 {
-
 	while (b_size-- && j <= limiter && !is_a_sorted(s))
 	{
 		if (!((s->b[0] >> j) & 1))
@@ -56,7 +66,7 @@ void	radix_sort_for_b(t_list *s, int b_size, int limiter, int j)
 void	radix_sort(t_list *s, int limiter)
 {
 	int	j;
-	int size;
+	int	size;
 
 	j = 0;
 	while (j <= limiter)
