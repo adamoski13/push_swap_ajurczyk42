@@ -1,5 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/14 20:06:41 by ajurczyk          #+#    #+#             */
+/*   Updated: 2025/06/22 19:40:58 by ajurczyk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	initialize_list(int argc, char **argv, t_list *s)
+{
+	int	i;
+
+	i = 0;
+	s->a_size = 0;
+	s->b_size = 0;
+	while (--argc)
+	{
+		if (ft_count_words(argv[i + 1], ' '))
+			s->a_size += ft_count_words(argv[i + 1], ' ');
+		else
+			s->a_size++;
+		i++;
+	}
+	s->a = malloc(s->a_size * sizeof * s->a);
+	if (s->a == NULL)
+		free_stacks(s, "Error\n");
+	s->b = malloc(s->a_size * sizeof * s->b);
+	if (s->b == NULL)
+		free_stacks(s, "Error\n");
+}
 
 static void	join_args(int ac, char **av, t_list *s)
 {
@@ -39,7 +73,7 @@ void	fill_stack(t_list *s, int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_list *s;
+	t_list	*s;
 
 	arg_check(ac, av);
 	s = malloc(sizeof * s);
@@ -47,7 +81,9 @@ int	main(int ac, char **av)
 		exit(1);
 	fill_stack(s, ac, av);
 	create_index(s);
-	if (s->a_size == 2)
+	if (is_a_sorted(s))
+		free_stacks(s, NULL);
+	else if (s->a_size == 2)
 		sa(s->a);
 	else if (s->a_size == 3)
 		sort_three_elements(s);
