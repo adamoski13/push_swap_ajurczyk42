@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ajurczyk <ajurczyk@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/14 20:07:27 by ajurczyk          #+#    #+#              #
+#    Updated: 2025/06/14 20:24:17 by ajurczyk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 SRC = $(addsuffix .c, main sort utils checks move_op/push_op move_op/swap_op move_op/rotate_op move_op/rev_rotate_op)
